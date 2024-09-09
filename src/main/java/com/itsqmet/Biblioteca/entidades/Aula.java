@@ -1,11 +1,6 @@
 package com.itsqmet.Biblioteca.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -13,12 +8,13 @@ import lombok.Data;
 public class Aula {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Puede ser AUTO o IDENTITY, dependiendo de tu base de datos
+    private Integer id;
     private String nombre;
-    private int capacidad;
+    private Integer capacidad;
     private String descripcion;
 
-
+    @ManyToOne
+    @JoinColumn(name = "idCurso")
+    private Curso curso;
 }

@@ -42,7 +42,7 @@ public class AulaController {
     @PostMapping("/aula/form")
     public String crear(Aula aula) {
         aulaRepository.save(aula);
-        return "redirect:/aulas";
+        return "redirect:/aulas";  // Redirige al listado de aulas después de guardar
     }
 
     // ELIMINAR
@@ -50,5 +50,13 @@ public class AulaController {
     public String eliminar(@PathVariable int id) {
         aulaRepository.deleteById(id);
         return "redirect:/aulas";
+    }
+
+    @GetMapping("/aula/editar/{id}")
+    public String editar(@PathVariable int id, Model model) {
+        Aula aula = aulaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid aula id:" + id));
+        model.addAttribute("aula", aula);
+        return "aula/formulario";
     }
 }

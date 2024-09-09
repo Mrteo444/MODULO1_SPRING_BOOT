@@ -236,8 +236,9 @@
             <td th:text="${aula.nombre}"></td>
             <td th:text="${aula.capacidad}"></td>
             <td th:text="${aula.descripcion}"></td>
-            <td th:text="${aula.curso.nombre}"></td>
+            <td th:text="${aula.curso != null ? aula.curso.cursoNombre : 'Sin curso'}"></td>
             <td>
+                <a th:href="@{/aula/editar/} + ${aula.id}" class="btn btn-success">Editar</a>
                 <a th:href="@{/aula/eliminar/{id}(id=${aula.id})}" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
@@ -246,7 +247,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2024 Biblioteca</p>
+    <p> 2024 Escuela</p>
 </footer>
 
 </body>
